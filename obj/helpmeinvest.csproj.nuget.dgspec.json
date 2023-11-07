@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest\\helpmeinvest.csproj": {}
+    "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest-api\\helpmeinvest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest\\helpmeinvest.csproj": {
+    "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest-api\\helpmeinvest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest\\helpmeinvest.csproj",
+        "projectUniqueName": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest-api\\helpmeinvest.csproj",
         "projectName": "helpmeinvest",
-        "projectPath": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest\\helpmeinvest.csproj",
+        "projectPath": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest-api\\helpmeinvest.csproj",
         "packagesPath": "C:\\Users\\dweep\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest\\obj\\",
+        "outputPath": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest-api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

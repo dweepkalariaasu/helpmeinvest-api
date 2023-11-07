@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yUQmbgwXvqfXBVX87UubCnhoK34q/uIx8TQ7/GAhrXtWlem1tJu1bQLKoi98QQ4CkfpFi7cNGYfg+ce6t30gEg==",
+  "dgSpecHash": "yqZz2j3vBsxhsCT/qoYMBZz04Lp7CQO4ZEPSaPsg2PqOwLH9S/7PUAI/lCbTW7os1lcxURKx/1cMRiQHOcDqOg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest\\helpmeinvest.csproj",
+  "projectFilePath": "C:\\Users\\dweep\\OneDrive\\Documents\\MS\\Project\\code\\helpmeinvest-api\\helpmeinvest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dweep\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\dweep\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
