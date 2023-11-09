@@ -12,8 +12,8 @@ namespace helpmeinvest.Models
 
         public RegistrationType RegistrationType { get; set; }
 
-        public int Balance { get; set; }
+        public decimal Balance { get; set; }
 
-        public int UnrealizedGainLoss { get; set; }
+        public decimal UnrealizedGainLoss { get; set; }
     }
 }

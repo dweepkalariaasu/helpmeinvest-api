@@ -10,6 +10,6 @@ namespace helpmeinvest.Models
         public string Id { get; set; }
         public int? customerId { get; set; }
         public AccountType AccountType { get; set; }
-        public bool additionalAccountTypesAllowed { get; set; }
+        public AccountType? AdditionalAccountType { get; set; }
     }
 }

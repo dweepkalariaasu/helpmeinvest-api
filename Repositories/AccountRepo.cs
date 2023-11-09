@@ -23,6 +23,9 @@ namespace helpmeinvest.Repositories
         public Account Get(string id) =>
             _accounts.Find<Account>(account => account.Id == id).FirstOrDefault();
 
+        public List<Account> GetByCustomerId(int customerId) =>
+            _accounts.Find(account => account.PrimaryAccountHolder == customerId).ToList<Account>();
+
         public Account Create(Account account)
         {
             _accounts.InsertOne(account);

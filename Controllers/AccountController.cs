@@ -29,7 +29,7 @@ namespace helpmeinvest.Controllers
         }
 
         [HttpGet("new")]
-        public NewAccountTypesResponse GetNewAccountTypes(int referenceId)
+        public NewAccountTypesResponse GetNewAccountTypes(string referenceId)
         {
             return AccountService.GetNewAccountTypes(referenceId);
         }
@@ -37,7 +37,7 @@ namespace helpmeinvest.Controllers
         [HttpGet("existing")]
         public IEnumerable<ExistingAccount> GetExistingAccounts(int customerId)
         {
-            return null;
+            return AccountService.GetExistingAccounts(customerId);
         }
     }
 }

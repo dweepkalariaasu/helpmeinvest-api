@@ -29,7 +29,7 @@ namespace helpmeinvest
             services.Configure<HelpMeInvestDbSettings>(
                 Configuration.GetSection(nameof(HelpMeInvestDbSettings)));
 
-            services.Configure<IEnumerable<NewAccountType>>(
+            services.Configure<NewAccountTypes>(
                 Configuration.GetSection("NewAccountTypes"));
 
             services.Configure<JsonOptions>(options =>
@@ -39,6 +39,9 @@ namespace helpmeinvest
 
             services.AddSingleton<IHelpMeInvestDbSettings>(sp =>
                 sp.GetRequiredService<IOptions<HelpMeInvestDbSettings>>().Value);
+
+            services.AddSingleton<INewAccountTypes>(sp => 
+                sp.GetRequiredService<IOptions<NewAccountTypes>>().Value);
 
             services.AddSingleton<AccountRepo>();
             services.AddSingleton<CustomerRepo>();
