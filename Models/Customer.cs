@@ -1,11 +1,14 @@
 ﻿using helpmeinvest.Enums;
 using System;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace helpmeinvest.Models
 {
     public class Customer
     {
-        public int id { get; set; }
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string Id { get; set; }
 
         public int CustomerId { get; set; }
 

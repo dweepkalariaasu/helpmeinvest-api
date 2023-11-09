@@ -9,4 +9,12 @@ namespace helpmeinvest.Models
         public bool IsCommon { get; set; }
         public int Rank { get; set; }
     }
+
+    public class INewAccountType
+    {
+        public AccountType AccountType { get; set; }
+        public RegistrationType RegistrationType { get; set; }
+        public bool IsCommon { get; set; }
+        public int Rank { get; set; }
+    }
 }
