@@ -50,6 +50,7 @@ namespace helpmeinvest
             services.AddTransient<AccountService>();
             services.AddTransient<CustomerService>();
             services.AddTransient<ChannelIntegrationService>();
+            services.AddTransient<AccountEligibilityService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

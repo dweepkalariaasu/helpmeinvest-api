@@ -6,7 +6,7 @@ namespace helpmeinvest.Models
     {
         public string Id { get; set; }
 
-        public int AccountId { get; set; }
+        public string AccountId { get; set; }
 
         public AccountType AccountType { get; set; }
 
@@ -15,5 +15,10 @@ namespace helpmeinvest.Models
         public decimal Balance { get; set; }
 
         public decimal UnrealizedGainLoss { get; set; }
+
+        public bool IsEligible { get; set; }
+
+        public string? inEligibleReason { get; set; }
+
     }
 }

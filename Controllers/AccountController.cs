@@ -1,5 +1,5 @@
-﻿using helpmeinvest.Models;
-using helpmeinvest.Models.Response;
+﻿using helpmeinvest.Enums;
+using helpmeinvest.Models;
 using helpmeinvest.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace helpmeinvest.Controllers
         }
 
         [HttpGet("new")]
-        public NewAccountTypesResponse GetNewAccountTypes(string referenceId)
+        public Dictionary<AccountType, IEnumerable<NewAccountType>> GetNewAccountTypes(string referenceId)
         {
             return AccountService.GetNewAccountTypes(referenceId);
         }
