@@ -18,7 +18,7 @@ namespace helpmeinvest.Models
 
         public bool IsEligible { get; set; }
 
-        public string? inEligibleReason { get; set; }
+        public string? InEligibleReason { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using helpmeinvest.Enums;
 using helpmeinvest.Models;
+using helpmeinvest.Models.Response;
 using helpmeinvest.Repositories;
 using System.Collections.Generic;
 
@@ -33,18 +34,18 @@ namespace helpmeinvest.Services
             return AccountRepo.Create(account);
         }
 
-        public Dictionary<AccountType, IEnumerable<NewAccountType>> GetNewAccountTypes(string referenceId)
+        public NewAccountTypesResponse GetNewAccountTypes(string referenceId)
         {
             var ciObj = CiRepo.Get(referenceId);
-            var accountType = (ciObj != null) ? ciObj.AccountType : AccountType.Brokerage;
-            var response = new Dictionary<AccountType, IEnumerable<NewAccountType>>();
-
-            response.Add(accountType, NewAccountTypes.NewAccountTypeList.FindAll(a => a.AccountType == accountType));
+            var response = new NewAccountTypesResponse();
+            response.SelectedAccountType = ciObj?.AccountType ?? AccountType.Brokerage;
+            response.AdditionalAccountType = ciObj?.AdditionalAccountType;
+            response.AccountTypes = new List<NewAccountType>();
+            response.AccountTypes.AddRange(NewAccountTypes.NewAccountTypeList.FindAll(a => a.AccountType == response.SelectedAccountType));
 
             if (ciObj.AdditionalAccountType != null)
             {
-                response.Add((AccountType)(ciObj.AdditionalAccountType), 
-                    NewAccountTypes.NewAccountTypeList.FindAll(a => a.AccountType == ciObj.AdditionalAccountType));
+                response.AccountTypes.AddRange(NewAccountTypes.NewAccountTypeList.FindAll(a => a.AccountType == ciObj.AdditionalAccountType));
             }
             return response;
         }
@@ -61,7 +62,7 @@ namespace helpmeinvest.Services
                 Balance = a.Balance,
                 RegistrationType = a.RegistrationType,
                 UnrealizedGainLoss = a.UnrealizedGainLoss,
-                inEligibleReason = EligibilityService.GetAccountEligibility(a),
+                InEligibleReason = EligibilityService.GetAccountEligibility(a),
                 IsEligible = (EligibilityService.GetAccountEligibility(a) == string.Empty)
             }));
 

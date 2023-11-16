@@ -21,14 +21,14 @@ namespace helpmeinvest.Services
 
         public string GetAccountEligibility(Account account)
         {
-            if (IneligibleRegTypes.Contains(account.RegistrationType))
+            if (account.AccountId == 12345678)
+            {
+                return transferInProgress;
+            }
+            else if (IneligibleRegTypes.Contains(account.RegistrationType))
             {
                 return ineligibleRegistrationType;
             }
-            else if (account.AccountId == 12345678)
-            {
-                return transferInProgress;
-            } 
             else
             {
                 return string.Empty;

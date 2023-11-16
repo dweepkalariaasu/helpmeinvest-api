@@ -57,6 +57,17 @@ namespace helpmeinvest
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "helpmeinvest", Version = "v1" });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200", "https://localhost:44307")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +90,8 @@ namespace helpmeinvest
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors();
         }
     }
 }
