@@ -25,18 +25,21 @@ namespace helpmeinvest.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public Account CreateAccount(Account account)
         {
             return _accountService.CreateAccount(account);
         }
 
         [HttpGet("new")]
+        [Authorize]
         public NewAccountTypesResponse GetNewAccountTypes(string referenceId)
         {
             return _accountService.GetNewAccountTypes(referenceId);
         }
 
         [HttpGet("existing")]
+        [Authorize]
         public IEnumerable<ExistingAccount> GetExistingAccounts(int customerId)
         {
             return _accountService.GetExistingAccounts(customerId);
