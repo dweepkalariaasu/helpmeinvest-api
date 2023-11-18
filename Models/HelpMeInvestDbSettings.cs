@@ -11,6 +11,8 @@
         public string CustomersCollectionName { get; set; }
 
         public string ChannelIntegrationCollectionName { get; set; }
+
+        public string CredentialsCollectionName { get; set; }
     }
 
     public interface IHelpMeInvestDbSettings
@@ -24,5 +26,7 @@
         public string CustomersCollectionName { get; set; }
 
         public string ChannelIntegrationCollectionName { get; set; }
+
+        public string CredentialsCollectionName { get; set; }
     }
 }

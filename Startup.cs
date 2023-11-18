@@ -1,6 +1,7 @@
 using helpmeinvest.Models;
 using helpmeinvest.Repositories;
 using helpmeinvest.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace helpmeinvest
@@ -37,6 +40,22 @@ namespace helpmeinvest
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
+            //services.AddMvc();
+
             services.AddSingleton<IHelpMeInvestDbSettings>(sp =>
                 sp.GetRequiredService<IOptions<HelpMeInvestDbSettings>>().Value);
 
@@ -46,16 +65,31 @@ namespace helpmeinvest
             services.AddSingleton<AccountRepo>();
             services.AddSingleton<CustomerRepo>();
             services.AddSingleton<ChannelIntegrationRepo>();
+            services.AddSingleton<CredentialRepo>();
 
             services.AddTransient<AccountService>();
             services.AddTransient<CustomerService>();
             services.AddTransient<ChannelIntegrationService>();
             services.AddTransient<AccountEligibilityService>();
+            services.AddTransient<LoginService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "helpmeinvest", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please insert JWT with Bearer into field",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {{
+                    new OpenApiSecurityScheme {
+                        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                    },
+                    new string[] { }}
+                });
             });
 
             services.AddCors(options =>
@@ -83,15 +117,17 @@ namespace helpmeinvest
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseCors();
         }
     }
 }

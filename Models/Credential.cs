@@ -1,10 +1,19 @@
-﻿namespace helpmeinvest.Models
+﻿using helpmeinvest.Enums;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace helpmeinvest.Models
 {
     public class Credential
     {
-        public int Id { get; set; }
-        public int CustomerId { get; set; }
+        [BsonId]
+        public string CustomerId { get; set; }
+
         public string UserName { get; set; }
-        public string Passowrd { get; set; }
+
+        public string Password { get; set; }
+
+        public string? Email { get; set; }
+
+        public Role? Role { get; set; }
     }
 }

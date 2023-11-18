@@ -9,22 +9,22 @@ namespace helpmeinvest.Controllers
     [ApiController]
     public class ChannelIntegrationController : ControllerBase
     {
-        private readonly ChannelIntegrationService ciService;
+        private readonly ChannelIntegrationService _ciService;
         public ChannelIntegrationController(ChannelIntegrationService service)
         {
-            ciService = service;
+            _ciService = service;
         }
 
         [HttpGet]
         public IEnumerable<ChannelIntegration> GetChannelIntegrations()
         {
-            return ciService.GetChannelIntegrations();
+            return _ciService.GetChannelIntegrations();
         }
 
         [HttpPost]
         public string CreateChannelIntegration(ChannelIntegration ci)
         {
-            return ciService.CreateChannelIntegration(ci);
+            return _ciService.CreateChannelIntegration(ci);
         }
     }
 }

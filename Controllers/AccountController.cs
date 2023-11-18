@@ -1,6 +1,7 @@
 ﻿using helpmeinvest.Models;
 using helpmeinvest.Models.Response;
 using helpmeinvest.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -10,34 +11,35 @@ namespace helpmeinvest.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly AccountService AccountService;
-        public AccountController(AccountService accountService)
+        private readonly AccountService _accountService;
+        public AccountController(AccountService service)
         {
-            AccountService = accountService;
+            _accountService = service;
         }
 
         [HttpGet]
+        [Authorize]
         public IEnumerable<Account> GetAccounts()
         {
-            return AccountService.GetAccounts();
+            return _accountService.GetAccounts();
         }
 
         [HttpPost]
         public Account CreateAccount(Account account)
         {
-            return AccountService.CreateAccount(account);
+            return _accountService.CreateAccount(account);
         }
 
         [HttpGet("new")]
         public NewAccountTypesResponse GetNewAccountTypes(string referenceId)
         {
-            return AccountService.GetNewAccountTypes(referenceId);
+            return _accountService.GetNewAccountTypes(referenceId);
         }
 
         [HttpGet("existing")]
         public IEnumerable<ExistingAccount> GetExistingAccounts(int customerId)
         {
-            return AccountService.GetExistingAccounts(customerId);
+            return _accountService.GetExistingAccounts(customerId);
         }
     }
 }
