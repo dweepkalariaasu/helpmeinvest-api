@@ -37,15 +37,18 @@ namespace helpmeinvest.Services
         public NewAccountTypesResponse GetNewAccountTypes(string referenceId)
         {
             var ciObj = CiRepo.Get(referenceId);
-            var response = new NewAccountTypesResponse();
-            response.SelectedAccountType = ciObj?.AccountType ?? AccountType.Brokerage;
-            response.AdditionalAccountType = ciObj?.AdditionalAccountType;
-            response.AccountTypes = new List<NewAccountType>();
+            var response = new NewAccountTypesResponse
+            {
+                SelectedAccountType = ciObj?.ChannelParams?.AccountType ?? AccountType.Brokerage,
+                AdditionalAccountType = ciObj?.ChannelParams?.AdditionalAccountType,
+                AccountTypes = new List<NewAccountType>()
+            };
+
             response.AccountTypes.AddRange(NewAccountTypes.NewAccountTypeList.FindAll(a => a.AccountType == response.SelectedAccountType));
 
-            if (ciObj.AdditionalAccountType != null)
+            if (response.AdditionalAccountType != null)
             {
-                response.AccountTypes.AddRange(NewAccountTypes.NewAccountTypeList.FindAll(a => a.AccountType == ciObj.AdditionalAccountType));
+                response.AccountTypes.AddRange(NewAccountTypes.NewAccountTypeList.FindAll(a => a.AccountType == response.AdditionalAccountType));
             }
             return response;
         }

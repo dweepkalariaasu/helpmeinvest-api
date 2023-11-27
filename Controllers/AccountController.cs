@@ -33,6 +33,7 @@ namespace helpmeinvest.Controllers
 
         [HttpGet("new")]
         [Authorize]
+        [AllowAnonymous]
         public NewAccountTypesResponse GetNewAccountTypes(string referenceId)
         {
             return _accountService.GetNewAccountTypes(referenceId);
